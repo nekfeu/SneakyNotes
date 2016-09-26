@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/delete_note"
+        android:title="Delete this note"
+        android:icon="@mipmap/ic_delete_note"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/join_data"
+        android:title="Join some documents"
+        android:icon="@mipmap/ic_join"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/save_note"
+        android:title="Save your note"
+        android:icon="@mipmap/ic_check"
+        app:showAsAction="always" />
+
+</menu>
