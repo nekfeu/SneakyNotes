@@ -17,6 +17,7 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,11 +35,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences pref = this.getSharedPreferences("MyNoteapp", MODE_PRIVATE);
         String jsonNotes = pref.getString("jsonNotes", "");
 
-        // clean all notes
-        //SharedPreferences.Editor editor = pref.edit();
-        //editor.putString("jsonNotes", "");
-        //editor.apply();
-
         gson = new Gson();
         Note[] notes = gson.fromJson(jsonNotes, Note[].class);
         arrNotes = new ArrayList<Note>();
@@ -47,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
                 arrNotes.add(note);
             }
         }
+        Collections.sort(arrNotes);
+        Collections.reverse(arrNotes);
 
         NoteAdapter adapter = new NoteAdapter(MainActivity.this, arrNotes);
         listNote.setAdapter(adapter);
@@ -66,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // go to create new note
                 createNoteView();
             }
         });
@@ -75,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this, CreateNoteActivity.class);
                 intent.putExtra("note", gson.toJson(arrNotes.get(position)));
-                //arrNotes.get(position).delete(getApplicationContext());
+                arrNotes.get(position).delete(getApplicationContext());
                 startActivity(intent);
             }
         });
@@ -90,23 +87,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.settings) {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

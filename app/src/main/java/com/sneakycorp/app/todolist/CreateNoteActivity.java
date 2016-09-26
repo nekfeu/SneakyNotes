@@ -23,7 +23,6 @@ public class CreateNoteActivity extends AppCompatActivity {
 
     public void deleteNote() {
         if (note != null) {
-            System.out.println("on delete");
             note.delete(getApplicationContext());
         }
         finish();

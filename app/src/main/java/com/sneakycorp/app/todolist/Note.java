@@ -12,12 +12,13 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
  * Created by Kevin on 22/09/2016.
  */
-public class Note {
+public class Note implements Comparable<Note>{
     private String text;
     private Date time;
 
@@ -90,5 +91,9 @@ public class Note {
             }
         }
         saveAllNotes(context, notesArray);
+    }
+
+    public int compareTo(Note obj) {
+        return this.getTime().compareTo(obj.getTime());
     }
 }
