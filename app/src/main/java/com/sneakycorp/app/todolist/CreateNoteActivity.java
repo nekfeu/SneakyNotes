@@ -21,11 +21,12 @@ public class CreateNoteActivity extends AppCompatActivity {
     EditText textNote;
     Note note;
 
-    public void updateNote() {
-        note
-    }
-
     public void deleteNote() {
+        if (note != null) {
+            System.out.println("on delete");
+            note.delete(getApplicationContext());
+        }
+        finish();
     }
 
     public void createNote() {
@@ -71,11 +72,7 @@ public class CreateNoteActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.save_note) {
             // save and back
-            if (note == null) {
-                createNote();
-            } else {
-                updateNote();
-            }
+            createNote();
             finish();
             return true;
         } else if (id == R.id.join_data) {

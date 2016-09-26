@@ -83,7 +83,12 @@ public class Note {
     public void delete(Context context) {
         ArrayList<Note> notesArray = getAllNotes(context);
 
-        notesArray.remove(this);
+        for (int i = 0 ; i < notesArray.size() ; i++) {
+            if (notesArray.get(i).getTime().equals(this.getTime())) {
+                notesArray.remove(i);
+                break;
+            }
+        }
         saveAllNotes(context, notesArray);
     }
 }

@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this, CreateNoteActivity.class);
                 intent.putExtra("note", gson.toJson(arrNotes.get(position)));
-                arrNotes.get(position).delete(getApplicationContext());
+                //arrNotes.get(position).delete(getApplicationContext());
                 startActivity(intent);
             }
         });
